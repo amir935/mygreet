@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: hello
+
+
+traits:
+  client-id-enforcememnt:
+    headers:
+      client_id:
+         type: string
+         required: true
+      client_secret:
+          type:  string
+          required: true
+/hello:
+  is:
+    - client-id-enforcememnt
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "message": "hello batch 28 . Today is 3/8/23"
+              }
+      400:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Bad Request"
+              }
+      404:
+        body:
+          application/json:
+            example:
+              {
+                "message": "Resource not found"
+              }
